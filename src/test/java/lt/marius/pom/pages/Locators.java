@@ -21,7 +21,6 @@ public class Locators {
 
         public class BasicFirstForm {
 
-
             public static By inputUserMessage = By.xpath("//input[@id='user-message']");
             public static By buttonShowMessage = By.xpath("//button[contains(@onclick,'show')]");
             public static By spanDisplay = By.xpath("//*[@id='display']");
@@ -29,6 +28,14 @@ public class Locators {
             public static By inputValueB = By.xpath("//input[@id='value2']");
             public static By buttonGetTotal = By.xpath("//form[@id='gettotal']//button");
             public static By spanDisplayValue = By.xpath("//span[@id='displayvalue']");
+        }
+
+        public static class BasicCheckBox {
+
+            public static By inputSingleCheckBox = By.xpath("//input[@id='isAgeSelected']");
+            public static By divDislpaySingleCheckBoxMessage = By.xpath("//div[@id='txtAge']");
+            public static By inputSelectedCheckedBox = By.xpath("// label[@class=\'checkbox-inline\'][2]/input");
+            public static By statusofCheckedBox = By.xpath("// label[@class='checkbox-inline'] [3]/input");
         }
     }
 }

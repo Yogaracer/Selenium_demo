@@ -46,6 +46,11 @@ public class Common {
     }
 
     public static String getTextFromElement(By locator) {
+
         return getElement(locator).getText();
+    }
+
+    public static Boolean getStatusOfCheckBox(By locator) {
+        return  getElement(locator).isEnabled();
     }
 }
