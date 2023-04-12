@@ -50,6 +50,18 @@ public class Locators {
             public static By paragraphGetAllSelected = By.xpath("//p[@class='getall-selected']");
             public static By buttonGetAllSelected = By.xpath("//button[@id='printAll']");
         }
+
+        public static class BasicRadioButton {
+            public static By buttonCheck = By.xpath("//button[@id='buttoncheck']");
+            public static By paragraphRadioButtonChecked =
+                    By.xpath("//p[contains(text(),'Radio button')]");
+
+            public static By inputRadioByGender(String inputGender) {
+                return By.xpath("//input[@name='optradio' and @value='" + inputGender + "']");
+                //kitas sprendimas:
+                // By.xpath(String.format("//input[@name='optradio' and @value='%s']", inputGender));
+            }
+        }
     }
 
 }
