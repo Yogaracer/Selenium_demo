@@ -21,6 +21,7 @@ public class Locators {
 
         public class BasicFirstForm {
 
+
             public static By inputUserMessage = By.xpath("//input[@id='user-message']");
             public static By buttonShowMessage = By.xpath("//button[contains(@onclick,'show')]");
             public static By spanDisplay = By.xpath("//*[@id='display']");
@@ -31,11 +32,24 @@ public class Locators {
         }
 
         public static class BasicCheckBox {
-
             public static By inputSingleCheckBox = By.xpath("//input[@id='isAgeSelected']");
             public static By divDislpaySingleCheckBoxMessage = By.xpath("//div[@id='txtAge']");
-            public static By inputSelectedCheckedBox = By.xpath("// label[@class=\'checkbox-inline\'][2]/input");
-            public static By statusofCheckedBox = By.xpath("// label[@class='checkbox-inline'] [3]/input");
+            public static By inputSelectedCheckedBox = By.xpath("//label[@class='checkbox-inline'][2]/input");
+            public static By statusofCheckedBox = By.xpath("//label[@class='checkbox-inline'][3]/input");
+        }
+
+
+        public static class BasicSelectDropdownList {
+            public static By selectDayOfWeek = By.xpath("//select[@id='select-demo']");
+            public static By paragraphSelectedValue = By.xpath("//p[@class='selected-value']");
+
+        }
+
+        public class SelectCityFromList {
+            public static By selectCity = By.xpath("//select[@id='multi-select']");
+            public static By paragraphGetAllSelected = By.xpath("//p[@class='getall-selected']");
+            public static By buttonGetAllSelected = By.xpath("//button[@id='printAll']");
         }
     }
+
 }

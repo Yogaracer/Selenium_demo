@@ -2,8 +2,6 @@ package lt.marius.pom.pages.seleniumeasy;
 
 import lt.marius.pom.pages.Common;
 import lt.marius.pom.pages.Locators;
-import org.openqa.selenium.By;
-import org.testng.annotations.Test;
 
 public class BasicCheckBoxPage {
     public static void open() {

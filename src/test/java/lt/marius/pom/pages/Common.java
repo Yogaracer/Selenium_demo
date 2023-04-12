@@ -3,6 +3,7 @@ package lt.marius.pom.pages;
 import lt.marius.pom.utils.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Common {
         Driver.closeDriver();
     }
 
-    public static void sleep(int millis){
+    public static void sleep(int millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
@@ -33,7 +34,7 @@ public class Common {
         return Driver.getDriver().findElement(locator);
     }
 
-    private static List<WebElement> getElements(By locator){
+    private static List<WebElement> getElements(By locator) {
         return Driver.getDriver().findElements(locator);
     }
 
@@ -51,6 +52,13 @@ public class Common {
     }
 
     public static Boolean getStatusOfCheckBox(By locator) {
-        return  getElement(locator).isEnabled();
+        return getElement(locator).isEnabled();
+    }
+
+    public static void selectOptionByValue(By locator, String value) {
+        WebElement element = getElement(locator);
+        Select selectElement = new Select(element);
+        selectElement.selectByValue(value);
+
     }
 }
