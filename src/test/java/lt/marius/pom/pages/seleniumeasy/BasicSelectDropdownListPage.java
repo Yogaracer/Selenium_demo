@@ -20,4 +20,18 @@ public class BasicSelectDropdownListPage {
     public static String readMessageOfSelectedValue() {
         return Common.getTextFromElement(Locators.SeleniumEasy.BasicSelectDropdownList.paragraphSelectedValue);
     }
+
+    public static void selectCityFromDropdownList(String selectValue) {
+        Common.selectOptionByValue(
+                Locators.SeleniumEasy.BasicSelectDropdownList.selectCity,
+                selectValue);
+    }
+
+    public static String readNameOfSelectedValue() {
+        return Common.getTextFromElement(Locators.SeleniumEasy.BasicSelectDropdownList.paragraphGetAllSelected);
+    }
+
+    public static void clickButtonGetAllSelected() {
+        Common.clickOnElement(Locators.SeleniumEasy.BasicSelectDropdownList.buttonGetAllSelected);
+    }
 }

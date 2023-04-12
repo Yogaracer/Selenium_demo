@@ -42,10 +42,6 @@ public class Locators {
         public static class BasicSelectDropdownList {
             public static By selectDayOfWeek = By.xpath("//select[@id='select-demo']");
             public static By paragraphSelectedValue = By.xpath("//p[@class='selected-value']");
-
-        }
-
-        public class SelectCityFromList {
             public static By selectCity = By.xpath("//select[@id='multi-select']");
             public static By paragraphGetAllSelected = By.xpath("//p[@class='getall-selected']");
             public static By buttonGetAllSelected = By.xpath("//button[@id='printAll']");
