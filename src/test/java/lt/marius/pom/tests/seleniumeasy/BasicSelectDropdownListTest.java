@@ -4,6 +4,7 @@ import lt.marius.pom.pages.seleniumeasy.BasicSelectDropdownListPage;
 import lt.marius.pom.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class BasicSelectDropdownListTest extends TestBase {
@@ -14,10 +15,22 @@ public class BasicSelectDropdownListTest extends TestBase {
         BasicSelectDropdownListPage.open();
     }
 
-    @Test
-    public void testSelectListDemo() {
-        String selectValue = "Wednesday";
-        String expectedResult = "Wednesday";
+
+    @DataProvider(name = "dayFromDropdownList")
+    public Object[][] dataProviderSelectDayDropdownList() {
+        return new Object[][]{
+                {"Sunday", "Sunday"},
+                {"Monday", "Monday"},
+                {"Tuesday", "Tuesday"},
+                {"Wednesday", "Wednesday"},
+                {"Thursday", "Thursday"},
+                {"Friday", "Friday"},
+                {"Saturday", "Saturday"}
+        };
+    }
+
+    @Test(dataProvider = "dayFromDropdownList")
+    public void testSelectListDemo(String selectValue, String expectedResult) {
         String actualResult;
 
         BasicSelectDropdownListPage.selectDayFromDropdownList(selectValue);
@@ -34,11 +47,22 @@ public class BasicSelectDropdownListTest extends TestBase {
         );
     }
 
+    @DataProvider(name = "cityFromDropdownList")
+    public Object[][] dataProviderSelectCityDropdownList() {
+        return new Object[][]{
+                {"California", "California"},
+                {"Florida", "Florida"},
+                {"New Jersey", "New Jersey"},
+                {"New York", "New York"},
+                {"Ohio", "Ohio"},
+                {"Texas", "Texas"},
+                {"Pennsylvania", "Pennsylvania"},
+                {"Washington", "Washington"}
+        };
+    }
 
-    @Test
-    public void testSelectCityListDemo() {
-        String selectValue = "Texas";
-        String expectedResult = "Texas";
+    @Test(dataProvider = "cityFromDropdownList")
+    public void testSelectCityListDemo(String selectValue, String expectedResult) {
         String actualResult;
 
         BasicSelectDropdownListPage.selectCityFromDropdownList(selectValue);
@@ -54,8 +78,6 @@ public class BasicSelectDropdownListTest extends TestBase {
                 )
         );
     }
-
-
 
 
 }
