@@ -40,16 +40,16 @@ public class BasicRadioButtonTest extends TestBase {
                 {"Male", "Male", "0 - 5", "0 - 5"},
                 {"Male", "Male", "5 - 15", "5 - 15"},
                 {"Male", "Male", "15 - 50", "15 - 50"},
-                {"Female", "Female",, "0 - 5", "0 - 5"},
-                {"Female", "Female",, "5 - 15", "5 - 15"},
-                {"Female", "Female",, "15 - 50", "15 - 50"},
+                {"Female", "Female", "0 - 5", "0 - 5"},
+                {"Female", "Female", "5 - 15", "5 - 15"},
+                {"Female", "Female", "15 - 50", "15 - 50"},
         };
     }
 
 
     @Test (dataProvider = "radioButtonsSexAndAgeGroup")
-    public void testGroupRadioButtonsDemo(String inputSex, String expectedSexResult,
-                                          String inputAgeGroup, String expectedAgeGroupResult);
+    public void testGroupRadioButtonsDemo(String inputSex, String expectedSexResult, String inputAgeGroup,
+                                          String expectedAgeGroupResult){
     String actualResult;
 
         BasicRadioButtonPage.clickOnRadioButton1(inputSex);
