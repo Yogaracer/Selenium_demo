@@ -45,17 +45,30 @@ public class Locators {
             public static By selectCity = By.xpath("//select[@id='multi-select']");
             public static By paragraphGetAllSelected = By.xpath("//p[@class='getall-selected']");
             public static By buttonGetAllSelected = By.xpath("//button[@id='printAll']");
+
         }
 
         public static class BasicRadioButton {
             public static By buttonCheck = By.xpath("//button[@id='buttoncheck']");
             public static By paragraphRadioButtonChecked =
                     By.xpath("//p[contains(text(),'Radio button')]");
+            public static By buttonGetValues =
+                    By.xpath("//button[@class='btn btn-default' and @onclick='getValues();']");
+            public static By paragraphRadioButtonGetValuesChecked =
+                    By.xpath("//p[@class='groupradiobutton']");
 
             public static By inputRadioByGender(String inputGender) {
                 return By.xpath("//input[@name='optradio' and @value='" + inputGender + "']");
                 //kitas sprendimas:
                 // By.xpath(String.format("//input[@name='optradio' and @value='%s']", inputGender));
+            }
+
+            public static By inputRadioByAge(String inputAgeGroup) {
+                return By.xpath("//input[@name='ageGroup' and @value='" + inputAgeGroup + "']");
+            }
+
+            public static By inputRadioBySex(String inputSex) {
+                return By.xpath("//input[@name='gender' and @value='" + inputSex + "']");
             }
         }
     }

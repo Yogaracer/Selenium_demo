@@ -54,4 +54,36 @@ public class BasicRadioButtonTest extends TestBase {
                 )
         );
     }
+
+
+    @Test
+    public void testGroupRadioButtonsDemo() {
+        String inputSex = "Male";
+        String inputAgeGroup = "0 - 5";
+        String expectedSexResult = "Male";
+        String expectedAgeGroupResult = "0 - 5";
+        String actualResult;
+
+        BasicRadioButtonPage.clickOnRadioButton1(inputSex);
+        BasicRadioButtonPage.clickOnRadioButton2(inputAgeGroup);
+        BasicRadioButtonPage.clickOnButtonGetValues();
+        actualResult = BasicRadioButtonPage.readMessageRadioButtonGetValuesChecked();
+
+        Assert.assertTrue(
+                actualResult.contains(expectedSexResult),
+                String.format(
+                        "Actual:%s, Expected: %s",
+                        actualResult,
+                        expectedSexResult
+                )
+        );
+        Assert.assertTrue(
+                actualResult.contains(expectedAgeGroupResult),
+                String.format(
+                        "Actual:%s, Expected: %s",
+                        actualResult,
+                        expectedAgeGroupResult
+                )
+        );
+    }
 }

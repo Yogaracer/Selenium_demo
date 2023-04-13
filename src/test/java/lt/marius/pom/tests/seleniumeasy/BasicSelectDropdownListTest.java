@@ -37,8 +37,8 @@ public class BasicSelectDropdownListTest extends TestBase {
 
     @Test
     public void testSelectCityListDemo() {
-        String selectValue = "Ohio";
-        String expectedResult = "Ohio";
+        String selectValue = "Texas";
+        String expectedResult = "Texas";
         String actualResult;
 
         BasicSelectDropdownListPage.selectCityFromDropdownList(selectValue);
@@ -54,4 +54,8 @@ public class BasicSelectDropdownListTest extends TestBase {
                 )
         );
     }
+
+
+
+
 }
