@@ -34,7 +34,7 @@ public class BasicRadioButtonTest extends TestBase {
 
     }
 
-    @DataProvider(name = "radioButtonsSexAndAgeGroup")
+    @DataProvider(name = "radioButtonsSexAndAgeGroup", parallel = true)
     public Object[][] dataProviderGroupRadioButtons() {
         return new Object[][]{
                 {"Male", "Male", "0 - 5", "0 - 5"},
@@ -46,8 +46,8 @@ public class BasicRadioButtonTest extends TestBase {
         };
     }
 
-
-    @Test (dataProvider = "radioButtonsSexAndAgeGroup")
+    @Test (dataProvider = "radioButtonsSexAndAgeGroup", threadPoolSize = 2)
+    // threadPoolSize = 4 paleidzia keleta testuojamu reiksmiu is karto
     public void testGroupRadioButtonsDemo(String inputSex, String expectedSexResult, String inputAgeGroup,
                                           String expectedAgeGroupResult){
     String actualResult;

@@ -9,25 +9,36 @@ import java.time.Duration;
 
 public class Driver {
 
-    private static WebDriver driver;
+//    private static WebDriver driver;
+    private  static  ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
     public static void setDriver() {
+
         WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
+
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--remote-allow-origins=*");
         options.addArguments("start-maximized");
+        options.addArguments("--force-device-scale-factor=0.7");
         options.addArguments("--headless=new"); // neatvaizduoja monitoriuje web puslapiu
 
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+//        driver = new ChromeDriver(options);
+        drivers.set(new ChromeDriver(options));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+        drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
     }
 
     public static WebDriver getDriver() {
-        return driver;
+//        return driver;
+        return  drivers.get();
     }
 
     public static void closeDriver() {
-        driver.quit();
+
+//        driver.quit();
+        drivers.get().quit();
+        drivers.remove();
     }
 
 }

@@ -22,14 +22,16 @@ public class BasicSelectDropdownListTest extends TestBase {
                 {"Sunday", "Sunday"},
                 {"Monday", "Monday"},
                 {"Tuesday", "Tuesday"},
+                {"Tuesday", "aaaaaaaaaaa"},
                 {"Wednesday", "Wednesday"},
                 {"Thursday", "Thursday"},
                 {"Friday", "Friday"},
+                {"Friday", "rrrrrrrrr"},
                 {"Saturday", "Saturday"}
         };
     }
 
-    @Test(dataProvider = "dayFromDropdownList")
+    @Test(dataProvider = "dayFromDropdownList", threadPoolSize = 2)
     public void testSelectListDemo(String selectValue, String expectedResult) {
         String actualResult;
 
@@ -50,9 +52,9 @@ public class BasicSelectDropdownListTest extends TestBase {
     @DataProvider(name = "cityFromDropdownList")
     public Object[][] dataProviderSelectCityDropdownList() {
         return new Object[][]{
-                {"California", "California"},
+                {"California", "vvvv"},
                 {"Florida", "Florida"},
-                {"New Jersey", "New Jersey"},
+                {"New Jersey", "qwweqeweq"},
                 {"New York", "New York"},
                 {"Ohio", "Ohio"},
                 {"Texas", "Texas"},
@@ -61,7 +63,7 @@ public class BasicSelectDropdownListTest extends TestBase {
         };
     }
 
-    @Test(dataProvider = "cityFromDropdownList")
+    @Test(dataProvider = "cityFromDropdownList", threadPoolSize = 2)
     public void testSelectCityListDemo(String selectValue, String expectedResult) {
         String actualResult;
 
