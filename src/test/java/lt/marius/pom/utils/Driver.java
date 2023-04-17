@@ -16,7 +16,7 @@ public class Driver {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("start-maximized");
-//        options.addArguments("headless"); // neatvaizduoja monitoriuje web puslapiu
+        options.addArguments("--headless=new"); // neatvaizduoja monitoriuje web puslapiu
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
