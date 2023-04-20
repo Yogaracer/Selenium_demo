@@ -3,6 +3,8 @@ package lt.marius.pom.pages.demoqa;
 import lt.marius.pom.pages.Common;
 import lt.marius.pom.pages.Locators;
 
+import java.util.List;
+
 public class CheckBoxPage {
 
     public static void open() {
@@ -18,4 +20,15 @@ public class CheckBoxPage {
         Common.clickOnElement(Locators.Demoqa.CheckBox.labelTreeNodeHome(name));
     }
 
+    public static boolean checkStatusOfAllCheckBoxes(boolean isChecked, String name) {
+        List<Boolean> statusList = Common.getStatusesOfCheckBoxGroup(
+                Locators.Demoqa.CheckBox.getGroupOfCheckBoxes(name)
+        );
+
+        for (Boolean status : statusList) {
+            if (status != isChecked) return !isChecked;
+        }
+        return isChecked;
+
+    }
 }

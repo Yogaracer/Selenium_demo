@@ -21,7 +21,7 @@ public class Driver {
 //        options.addArguments("--remote-allow-origins=*");
         options.addArguments("start-maximized");
         options.addArguments("--force-device-scale-factor=0.7");
-//        options.addArguments("--headless=new"); // neatvaizduoja monitoriuje web puslapiu
+        options.addArguments("--headless=new"); // neatvaizduoja monitoriuje web puslapiu
 
 //        driver = new ChromeDriver(options);
         drivers.set(new ChromeDriver(options));

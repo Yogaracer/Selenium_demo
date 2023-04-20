@@ -15,9 +15,11 @@ public class Locators {
             public static By paragraphEmail = By.xpath("//p[@id='email']"); // p - reiskia paragraph
         }
 
-        public class CheckBox {
+        public static class CheckBox {
 
             public static By buttonExpandAll = By.xpath("//button[@title='Expand all']");
+            public static By inputHomeCheckBox = By.xpath("//div[@id='tree-node']// input[@type='checkbox']"); // div - reiskia direktorija/konteineri/ li - reiskia list
+
 
             public static By labelTreeNodeHome(String name) {
                 return By.xpath(
@@ -26,6 +28,10 @@ public class Locators {
 
                 // Galimas variantas: public static By labelTreeNodeHome = By.xpath("//label[@for='tree-node-home']");}
 
+            }
+
+            public static By getGroupOfCheckBoxes(String name) {
+                return By.xpath("//label[@for='tree-node-%s']/../..//input".formatted(name)); //%s - ides reiksme nurodyta String name
             }
         }
     }
