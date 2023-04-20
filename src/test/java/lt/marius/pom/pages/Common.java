@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Common {
@@ -47,12 +48,22 @@ public class Common {
     }
 
     public static String getTextFromElement(By locator) {
-
         return getElement(locator).getText();
     }
 
     public static Boolean getStatusOfCheckBox(By locator) {
+
         return getElement(locator).isEnabled();
+    }
+
+    public static List<Boolean> getStatusesOfCheckBoxGroup(By locator) {
+        List<WebElement> elements = getElements(locator);
+        List<Boolean> statusList = new ArrayList<>();
+
+        for (WebElement element : elements) {
+            statusList.add(element.isSelected()); // is selected - reiskia pazymetas salygoje pvz radio buttonas
+        }
+        return statusList;
     }
 
     public static void selectOptionByValue(By locator, String value) {
@@ -61,4 +72,5 @@ public class Common {
         selectElement.selectByValue(value);
 
     }
+
 }
