@@ -1,10 +1,10 @@
 package lt.marius.pom.tests.seleniumeasy;
 
 import lt.marius.pom.pages.seleniumeasy.BasicCheckBoxPage;
-import lt.marius.pom.pages.seleniumeasy.BasicFirstFormPage;
 import lt.marius.pom.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class BasicCheckBoxTest extends TestBase {
@@ -45,4 +45,27 @@ public class BasicCheckBoxTest extends TestBase {
 
         Assert.assertEquals(actualResult, expectedResult);
     }
-}
+
+
+    @DataProvider(name = "multipleCheckBoxCheck")
+    public Object[][] dataProviderCheckAllCheckBox() {
+        return new Object[][]{
+                {false, false},
+                {true, true},
+        };
+    }
+
+        @Test(dataProvider = "multipleCheckBoxCheck")
+        public void testMultipleCheckBox (boolean isChecked, boolean expectedStatus){
+
+            boolean actualStatus;
+
+            BasicCheckBoxPage.clickOnButtonCheckAll();
+            if (!isChecked) {
+                BasicCheckBoxPage.clickOnButtonCheckAll();
+            }
+            actualStatus = BasicCheckBoxPage.checkStatusOfAllCheckBoxes(isChecked);
+
+            Assert.assertEquals(actualStatus, expectedStatus);
+        }
+    }
