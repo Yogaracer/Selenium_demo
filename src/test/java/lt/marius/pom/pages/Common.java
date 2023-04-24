@@ -5,10 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Common {
+
+    public static List<String> brokenLinks = new ArrayList<>();
+
+    public static List<String> validLinks = new ArrayList<>();
 
     public static void setUpDriver() {
         Driver.setDriver();
@@ -73,4 +81,64 @@ public class Common {
 
     }
 
+    public static String getElementAttributeValue(By locator, String attributeName) {
+        return getElement(locator).getAttribute(attributeName);
+    }
+
+    public static boolean verifyLink(By locator, String attributeName) { //sukurus metoda reikia pakeisti parametrus i  locator ir attribute name
+        String link = getElement(locator).getAttribute(attributeName);
+        return checkHttpResponseCode(link);
+    }
+
+    public static boolean verifyAllLinks(By locator, String attributeName) { //tikrina visu linku statusa
+        List<WebElement> elements = getElements(locator);
+        boolean testStatus = true; //default reiksme true
+
+        for (WebElement element : elements) {
+            String link = element.getAttribute(attributeName);
+            if (!checkHttpResponseCode(link)) { //ciklas suksis kol testuojamas linkas bus Broken - false
+                testStatus = false;
+            }
+        }
+
+        return testStatus;
+    }
+
+    private static boolean checkHttpResponseCode(String link) {
+        try {
+            URL url = new URL(link); //raudonas pabraukimas reiskia exeption, ji reikia irengti i TRY CATCH bloka
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setConnectTimeout(8000);
+            httpURLConnection.connect();
+
+            if (httpURLConnection.getResponseCode() >= 400) { // jei kodas > 400 sugeneruojama zinute
+                brokenLinks.add(
+                        "Resp.Code: %s, Resp.Message: %s, Broken link: %s".formatted(
+                                httpURLConnection.getResponseCode(),
+                                httpURLConnection.getResponseMessage(),
+                                link
+                        )
+                );
+
+                return false;
+            } else {
+                validLinks.add(
+                        "Resp.Code: %s, Resp.Message: %s, Valid Link: %s".formatted(
+                                httpURLConnection.getResponseCode(),
+                                httpURLConnection.getResponseMessage(),
+                                link
+                        )
+                );
+
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace(); //pakeiciame default eilute i e.printStackTrace()
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }
+
+
