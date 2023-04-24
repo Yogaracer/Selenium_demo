@@ -34,6 +34,12 @@ public class Locators {
                 return By.xpath("//label[@for='tree-node-%s']/../..//input".formatted(name)); //%s - ides reiksme nurodyta String name
             }
         }
+
+        public static class BrokenLink {
+            public static By linkValid = By.xpath("//div[@class='col-12 mt-4 col-md-6']//a[contains(text(),'Valid')]"); // ieskom konteinerio ir atributo
+            public static By linkBroken = By.xpath("//div[@class='col-12 mt-4 col-md-6']//a[contains(text(),'Broken')]");
+            public static By linkGroup = By.xpath("//div[@class='col-12 mt-4 col-md-6']//a");
+        }
     }
 
 //        public static By inputRadioByAge(String inputAgeGroup) {
@@ -100,7 +106,11 @@ public class Locators {
             }
         }
     }
+
+    public class Salikai {
+    }
 }
+
 
 
 

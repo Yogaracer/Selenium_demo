@@ -1,5 +1,6 @@
 package lt.marius.pom.utils;
 
+import lt.marius.pom.pages.Common;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -7,18 +8,23 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.File;
-import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
         takeScreenshot();
+
+        if (!Common.brokenLinks.isEmpty() || !Common.validLinks.isEmpty()) {
+            Common.brokenLinks.forEach(System.out::println);
+            Common.validLinks.forEach(System.out::println);
+        }
     }
+
+
 
     private void takeScreenshot() {
         TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
@@ -37,7 +43,7 @@ public class TestListener implements ITestListener {
         try {
             FileUtils.copyFile(screenshotFile, copyToFile);
         } catch (IOException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
 
