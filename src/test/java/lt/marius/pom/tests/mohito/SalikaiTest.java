@@ -1,6 +1,5 @@
 package lt.marius.pom.tests.mohito;
 
-import lt.marius.pom.pages.mohito.BadLinkPage;
 import lt.marius.pom.pages.mohito.SalikaiPage;
 import lt.marius.pom.tests.TestBase;
 import org.testng.Assert;
@@ -22,7 +21,8 @@ public class SalikaiTest extends TestBase {
         boolean expectedResult = true;
         boolean actualResult;
 
-        actualResult = BadLinkPage.verifyLinkValidation(attributeName);
+        actualResult = SalikaiPage.verifyIfAllLinksAreValid(attributeName);
 
-        Assert.assertEquals(actualResult,expectedResult);
+        Assert.assertEquals(actualResult, expectedResult);
+    }
 }

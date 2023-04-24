@@ -107,7 +107,12 @@ public class Locators {
         }
     }
 
-    public class Salikai {
+
+    public class Mohito {
+
+        public class Salikai {
+            public static By linkGroup = By.xpath("//section[@id='categoryProducts']//a");
+        }
     }
 }
 
