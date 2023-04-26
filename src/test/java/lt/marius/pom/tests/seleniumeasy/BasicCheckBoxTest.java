@@ -1,5 +1,6 @@
 package lt.marius.pom.tests.seleniumeasy;
 
+import lt.marius.pom.pages.Common;
 import lt.marius.pom.pages.seleniumeasy.BasicCheckBoxPage;
 import lt.marius.pom.tests.TestBase;
 import org.testng.Assert;
@@ -45,9 +46,9 @@ public class BasicCheckBoxTest extends TestBase {
 
         Assert.assertEquals(actualResult, expectedResult);
     }
+    //http://demo.seleniumeasy.com/basic-checkbox-demo.html
 
-
-    @DataProvider(name = "multipleCheckBoxCheck")
+    @DataProvider(name = "dataProviderForMultipleCheckBoxCheck")
     public Object[][] dataProviderCheckAllCheckBox() {
         return new Object[][]{
                 {false, false},
@@ -55,17 +56,51 @@ public class BasicCheckBoxTest extends TestBase {
         };
     }
 
-        @Test(dataProvider = "multipleCheckBoxCheck")
-        public void testMultipleCheckBox (boolean isChecked, boolean expectedStatus){
+    @Test(dataProvider = "dataProviderForMultipleCheckBoxCheck")
+    public void testMultipleCheckBox(boolean isChecked, boolean expectedStatus) {
 
-            boolean actualStatus;
+        boolean actualStatus;
 
+        BasicCheckBoxPage.clickOnButtonCheckAll();
+
+        if (!isChecked) {
             BasicCheckBoxPage.clickOnButtonCheckAll();
-            if (!isChecked) {
-                BasicCheckBoxPage.clickOnButtonCheckAll();
-            }
-            actualStatus = BasicCheckBoxPage.checkStatusOfAllCheckBoxes(isChecked);
-
-            Assert.assertEquals(actualStatus, expectedStatus);
         }
+        actualStatus = BasicCheckBoxPage.checkStatusOfAllCheckBoxes(isChecked);
+
+        Assert.assertEquals(actualStatus, expectedStatus);
     }
+
+    //http://demo.seleniumeasy.com/basic-checkbox-demo.html
+
+    @DataProvider(name = "dataProviderForTestButtonAttributeValueChange")
+    public Object[][] dataProviderForTestButtonAttributeValueChange() {
+        return new Object[][]{
+                {"value", "Uncheck All"},
+                {"value", "Check All"},
+        };
+    }
+
+
+    @Test(dataProvider = "dataProviderForTestButtonAttributeValueChange")
+    public void testButtonAttributeValueChange(String attributeName, String expectedAttributeValue) {
+        String actualAttributeValue;
+
+        BasicCheckBoxPage.clickOnButtonCheckAll();
+
+        if (expectedAttributeValue.equals("Check All")) {
+            BasicCheckBoxPage.clickOnButtonCheckAll();
+        }
+
+        actualAttributeValue = BasicCheckBoxPage.getMultiSelectButtonValue(attributeName);
+
+        Common.sleep(2000);
+        Assert.assertEquals(actualAttributeValue, expectedAttributeValue);
+        String.format("Actual: %s; Expected: %s", actualAttributeValue, expectedAttributeValue);
+
+        Common.sleep(2000);
+    }
+
+}
+
+
