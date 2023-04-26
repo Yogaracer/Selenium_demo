@@ -43,4 +43,11 @@ public class BasicCheckBoxPage {
         }
         return isChecked;
     }
+
+    public static String getMultiSelectButtonValue(String attributeName) {
+        return Common.getElementAttributeValue(
+                Locators.SeleniumEasy.BasicCheckBox.buttonCheckBoxGroup,
+                attributeName
+        );
+    }
 }
