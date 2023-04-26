@@ -2,6 +2,7 @@ package lt.marius.pom.pages;
 
 import lt.marius.pom.utils.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -17,6 +18,8 @@ public class Common {
     public static List<String> brokenLinks = new ArrayList<>();
 
     public static List<String> validLinks = new ArrayList<>();
+
+    public static List<String> brokenImages = new ArrayList<>(); // static reiskia pasieksime is bet kurios vietos
 
     public static void setUpDriver() {
         Driver.setDriver();
@@ -86,30 +89,32 @@ public class Common {
     }
 
     public static boolean verifyLink(By locator, String attributeName) { //sukurus metoda reikia pakeisti parametrus i  locator ir attribute name
-        String link = getElement(locator).getAttribute(attributeName);
-        return checkHttpResponseCode(link);
+        WebElement element = getElement(locator);
+        String link = element.getAttribute(attributeName);
+        return checkHttpResponseCode(link, element);
     }
 
     public static boolean verifyAllLinks(By locator, String attributeName) { //tikrina visu linku statusa
+
         List<WebElement> elements = getElements(locator);
         boolean testStatus = true; //default reiksme true
 
-        for (WebElement element : elements) {
-            String link = element.getAttribute(attributeName);
-            if (!checkHttpResponseCode(link)) { //ciklas suksis kol testuojamas linkas bus Broken - false
+        for (WebElement element : elements) { // kiekviena elementa pasiimame
+            String link = element.getAttribute(attributeName); // pasiimame elemento linka
+            if (!checkHttpResponseCode(link, element)) { //ciklas suksis kol testuojamas linkas bus Broken - false
                 testStatus = false;
             }
         }
-
         return testStatus;
     }
 
-    private static boolean checkHttpResponseCode(String link) {
+    private static boolean checkHttpResponseCode(String link, WebElement element) {
         try {
             URL url = new URL(link); //raudonas pabraukimas reiskia exeption, ji reikia irengti i TRY CATCH bloka
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setConnectTimeout(8000);
             httpURLConnection.connect();
+
 
             if (httpURLConnection.getResponseCode() >= 400) { // jei kodas > 400 sugeneruojama zinute
                 brokenLinks.add(
@@ -137,7 +142,28 @@ public class Common {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (element.getTagName().equals("img")) { // pagal tag pavadinima galime atpazinti ar vykdyti si metoda
+            boolean isImageVisible = checkImageDisplayValidation(element); // skirta neveikianciu image failu ataskaitai generuoti
+
+            if (!isImageVisible) {
+                brokenImages.add(
+                        "Broken image, url: %s".formatted(
+                                link
+                        )
+                );
+            }
+            return isImageVisible;
+        }
         return true;
+    }
+
+    private static boolean checkImageDisplayValidation(WebElement element) {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.getDriver(); // vienas is budu apsirasyti, nuskaityti, paklikinti
+
+        return (Boolean) javascriptExecutor.executeScript(
+                "return (typeof arguments[0].naturalWidth !=\"undefined\" && arguments[0].naturalWidth > 0);",
+                element);
     }
 }
 

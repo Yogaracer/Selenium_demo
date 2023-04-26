@@ -19,18 +19,15 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        takeScreenshot();
-
-        if (!Common.brokenLinks.isEmpty() || !Common.validLinks.isEmpty()) {
-            saveDataIntoFile();
+        if (!Common.brokenImages.isEmpty() && !Common.validLinks.isEmpty()) {
+            takeScreenshot();
         }
+        saveDataIntoFile();
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        if (!Common.brokenLinks.isEmpty() || !Common.validLinks.isEmpty()) {
-            saveDataIntoFile();
-        }
+        saveDataIntoFile();
     }
 
     private void takeScreenshot() {
@@ -63,14 +60,25 @@ public class TestListener implements ITestListener {
 
 
         String fileBrokenLinks = "fileBrokenLinks" + date + ".txt"; // susikuriame direktorijos pavadinima, kuriame bus saugomi broken links
-        String fileValidLinks = "fileValidLinks" + date + ".txt";; // norint sukurti kitoki formata naudoti kita pletini pvz. xls, doc, pdf ir pan.
+        String fileValidLinks = "fileValidLinks" + date + ".txt"; // norint sukurti kitoki formata naudoti kita pletini pvz. xls, doc, pdf ir pan.
+        String fileBrokenImages = "fileBrokenImages" + date + ".txt";
         String dir = "C:\\Users\\User\\Documents\\PI testavimas\\Vilniuscoding School\\MySQL\\Selenium_demo\\link_reports\\"; //vieta kurioje bus issaugomi failai. Prideti papildomai \\ gale kad issaugotu direktorijoje link_reports
 
         Path pathFileBrokenLinks = Paths.get(dir.concat(fileBrokenLinks)); //sujungiame direktorijos ir filo kuriame bus issaugotas linkas pavadinimai
         Path pathFileValidLinks = Paths.get(dir.concat(fileValidLinks));
+        Path pathFileBrokenImages = Paths.get(dir.concat(fileBrokenImages));
+
         try {
-            Files.write(pathFileBrokenLinks, Common.brokenLinks); // common.brokenList yra listas - sarasas
-            Files.write(pathFileValidLinks, Common.validLinks);
+
+            if (!Common.brokenLinks.isEmpty()) {
+                Files.write(pathFileBrokenLinks, Common.brokenLinks);
+            }
+            if (!Common.validLinks.isEmpty()) {
+                Files.write(pathFileValidLinks, Common.validLinks);
+            }
+            if (!Common.brokenImages.isEmpty()) {
+                Files.write(pathFileBrokenImages, Common.brokenImages);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

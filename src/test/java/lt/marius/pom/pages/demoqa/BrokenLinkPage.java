@@ -21,4 +21,16 @@ public class BrokenLinkPage {
     public static boolean verifyIfAllLinksAreValid(String attributeName) {
         return Common.verifyAllLinks(Locators.Demoqa.BrokenLink.linkGroup,attributeName);
     }
+
+    public static boolean verifyImageValidation(String attributeName) {
+        return Common.verifyLink(Locators.Demoqa.BrokenLink.imageValid, attributeName);
+    }
+
+    public static boolean verifyImageValidationBroken(String attributeName) {
+        return Common.verifyLink(Locators.Demoqa.BrokenLink.imageBroken, attributeName);
+    }
+
+    public static boolean verifyIfAllImagesAreValid(String attributeName) {
+        return Common.verifyAllLinks(Locators.Demoqa.BrokenLink.imageGroup,attributeName);
+    }
 }

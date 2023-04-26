@@ -52,4 +52,40 @@ public class BrokenLinkTest extends TestBase {
         Assert.assertEquals(actualResult,expectedResult);
     }
 
+    @Test //testas skirtas patikrinti valid image https://demoqa.com/broken
+
+    public void testValidImage() {
+        String attributeName = "src"; //src -  parametras kuris apibrezia image grupe
+        boolean expectedResult = true;
+        boolean actualResult;
+
+        actualResult = BrokenLinkPage.verifyImageValidation(attributeName);
+
+        Assert.assertEquals(actualResult,expectedResult);
+    }
+
+    @Test //testas skirtas patikrinti broken image https://demoqa.com/broken
+
+    public void testBrokenImage() {
+        String attributeName = "src";
+        boolean expectedResult = true;
+        boolean actualResult;
+
+        actualResult = BrokenLinkPage.verifyImageValidationBroken(attributeName);
+
+        Assert.assertEquals(actualResult,expectedResult);
+    }
+
+    @Test
+    public void testIfAllImagesValid(){
+
+        String attributeName = "src";
+        boolean expectedResult = true;
+        boolean actualResult;
+
+        actualResult = BrokenLinkPage.verifyIfAllImagesAreValid(attributeName);
+
+        Assert.assertEquals(actualResult,expectedResult);
+    }
+
 }

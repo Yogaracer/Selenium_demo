@@ -39,13 +39,11 @@ public class Locators {
             public static By linkValid = By.xpath("//div[@class='col-12 mt-4 col-md-6']//a[contains(text(),'Valid')]"); // ieskom konteinerio ir atributo
             public static By linkBroken = By.xpath("//div[@class='col-12 mt-4 col-md-6']//a[contains(text(),'Broken')]");
             public static By linkGroup = By.xpath("//div[@class='col-12 mt-4 col-md-6']//a");
+            public static By imageValid = By.xpath("//div[@class='col-12 mt-4 col-md-6']//img[1]");
+            public static By imageBroken = By.xpath("//div[@class='col-12 mt-4 col-md-6']//img[2]");
+            public static By imageGroup = By.xpath("//div[@class='col-12 mt-4 col-md-6']//img");
         }
     }
-
-//        public static By inputRadioByAge(String inputAgeGroup) {
-//            return By.xpath("//input[@name='ageGroup' and @value='" + inputAgeGroup + "']");
-//        }
-
 
     public class SeleniumEasy {
 
