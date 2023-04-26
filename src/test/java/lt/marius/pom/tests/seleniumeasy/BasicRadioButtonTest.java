@@ -15,6 +15,14 @@ public class BasicRadioButtonTest extends TestBase {
     }
 
 
+    @DataProvider(name = "radioButtonGender", parallel = true)
+    public Object[][] dataProviderRadioButtons() {
+        return new Object[][]{
+                {"Male", "Male"},
+                {"Female", "Female"},
+        };
+    }
+
     @Test(dataProvider = "radioButtonGender")
     public void testRadioButton(String inputGender, String expectedResult) {
         String actualResult;
@@ -34,7 +42,7 @@ public class BasicRadioButtonTest extends TestBase {
 
     }
 
-    @DataProvider(name = "radioButtonsSexAndAgeGroup", parallel = true)
+    @DataProvider(name = "radioButtonsSexAndAgeGroup", parallel = true)  // prallel - paleidzia visus testus lygiagreciai
     public Object[][] dataProviderGroupRadioButtons() {
         return new Object[][]{
                 {"Male", "Male", "0 - 5", "0 - 5"},
