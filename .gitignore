@@ -1,6 +1,7 @@
-target/
+target
 screenshots
-test-output
+test_output
+link_reports
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

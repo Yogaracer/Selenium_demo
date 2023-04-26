@@ -9,6 +9,9 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,12 +22,16 @@ public class TestListener implements ITestListener {
         takeScreenshot();
 
         if (!Common.brokenLinks.isEmpty() || !Common.validLinks.isEmpty()) {
-            Common.brokenLinks.forEach(System.out::println);
-            Common.validLinks.forEach(System.out::println);
+            saveDataIntoFile();
         }
     }
 
-
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        if (!Common.brokenLinks.isEmpty() || !Common.validLinks.isEmpty()) {
+            saveDataIntoFile();
+        }
+    }
 
     private void takeScreenshot() {
         TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
@@ -47,5 +54,25 @@ public class TestListener implements ITestListener {
         }
 
 
+    }
+
+
+    private void saveDataIntoFile() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HH_mm_SSS");
+        String date = LocalDateTime.now().format(formatter);
+
+
+        String fileBrokenLinks = "fileBrokenLinks" + date + ".txt"; // susikuriame direktorijos pavadinima, kuriame bus saugomi broken links
+        String fileValidLinks = "fileValidLinks" + date + ".txt";; // norint sukurti kitoki formata naudoti kita pletini pvz. xls, doc, pdf ir pan.
+        String dir = "C:\\Users\\User\\Documents\\PI testavimas\\Vilniuscoding School\\MySQL\\Selenium_demo\\link_reports\\"; //vieta kurioje bus issaugomi failai. Prideti papildomai \\ gale kad issaugotu direktorijoje link_reports
+
+        Path pathFileBrokenLinks = Paths.get(dir.concat(fileBrokenLinks)); //sujungiame direktorijos ir filo kuriame bus issaugotas linkas pavadinimai
+        Path pathFileValidLinks = Paths.get(dir.concat(fileValidLinks));
+        try {
+            Files.write(pathFileBrokenLinks, Common.brokenLinks); // common.brokenList yra listas - sarasas
+            Files.write(pathFileValidLinks, Common.validLinks);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
