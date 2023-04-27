@@ -78,10 +78,39 @@ public class Common {
     }
 
     public static void selectOptionByValue(By locator, String value) {
+        getSelectElement(locator).selectByValue(value);
+
+    }
+
+    public static void selectOptionGroupByValue(By locator, List<String> selectValues) {
+        Select selectElement = getSelectElement(locator);
+
+        for (String value : selectValues) {
+            selectElement.selectByValue(value);
+        }
+    }
+
+    private static Select getSelectElement(By locator) {
         WebElement element = getElement(locator);
         Select selectElement = new Select(element);
-        selectElement.selectByValue(value);
+        return selectElement;
+    }
 
+
+    public static List<Boolean> getStatusesOfSelectedOptionsGroup(By locator, List<String> selectValues) {
+        List<Boolean> selectedStatusList = new ArrayList<>();
+        List<WebElement> elements = getSelectElement(locator).getAllSelectedOptions();
+
+//        for (String value : selectValues) {
+////            for (WebElement element: elements) {
+////                if(element.getAttribute("value").equals(value)){
+////                    selectedStatusList.add(element.isSelected());
+//            break;
+
+        for (WebElement element : elements) {
+            selectedStatusList.add(element.isSelected());
+        }
+        return selectedStatusList;
     }
 
     public static String getElementAttributeValue(By locator, String attributeName) {
@@ -165,6 +194,8 @@ public class Common {
                 "return (typeof arguments[0].naturalWidth !=\"undefined\" && arguments[0].naturalWidth > 0);",
                 element);
     }
+
+
 }
 
 

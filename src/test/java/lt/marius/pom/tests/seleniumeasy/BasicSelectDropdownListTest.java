@@ -7,6 +7,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BasicSelectDropdownListTest extends TestBase {
 
     @BeforeMethod
@@ -81,5 +84,15 @@ public class BasicSelectDropdownListTest extends TestBase {
         );
     }
 
+    @Test
+    public void testSelectedCityGroupFromList() {
+        List<String> selectValues = Arrays.asList("California", "New Jersey", "Ohio", "Pennsylvania");
+        boolean selectedStatus = true;
+        boolean expectedResult = true;
+        boolean actualResult;
+        BasicSelectDropdownListPage.selectCitiesFromList(selectValues);
+        actualResult = BasicSelectDropdownListPage.checkSelectedStatusesOfCityList(selectValues, selectedStatus);
+        Assert.assertEquals(actualResult, expectedResult);
+    }
 
 }
