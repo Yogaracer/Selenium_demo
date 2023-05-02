@@ -4,12 +4,16 @@ import lt.marius.pom.utils.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -193,6 +197,33 @@ public class Common {
         return (Boolean) javascriptExecutor.executeScript(
                 "return (typeof arguments[0].naturalWidth !=\"undefined\" && arguments[0].naturalWidth > 0);",
                 element);
+    }
+
+    public static void waitForElementToBeClickable(By locator) {
+        System.out.println( // testo rezultate spausdina kada koki statusa igyja mygtukas
+                "IsEnabled: " + Common.getElement(locator).isEnabled() +
+                        "\n\t starting time: " + LocalTime.now().getSecond()
+        );
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public static void waitForElementAttributeContains(String attributeName, String attributeValue, By locator) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeContains(locator, attributeName, attributeValue));
+    }
+
+    public static boolean waitForElementToBeClickableCustomised(By locator) {
+
+        int waitingSeconds = 5; // ciklas kuris tikrina ar elementas yra isEnabled kas 0.5 sekundes naudojant wait statusa
+
+        for (int i = 0; i < (waitingSeconds * 2); i++) {
+            if (getElement(locator).isEnabled()) {
+                return true;
+            }
+            sleep(500); // tikrina kas 0.5 sekundes
+        }
+        return false;
     }
 
 

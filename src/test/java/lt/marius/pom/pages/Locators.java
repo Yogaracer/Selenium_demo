@@ -6,6 +6,8 @@ public class Locators {
 
     public static class Demoqa {
 
+
+
         public class TextBox {
 
             public static By inputUserName = By.xpath("//input[@id='userName']");
@@ -25,11 +27,9 @@ public class Locators {
                 return By.xpath(
                         "//label[@for='tree-node-%s']".formatted(name)
                 );
-
                 // Galimas variantas: public static By labelTreeNodeHome = By.xpath("//label[@for='tree-node-home']");}
 
             }
-
             public static By getGroupOfCheckBoxes(String name) {
                 return By.xpath("//label[@for='tree-node-%s']/../..//input".formatted(name)); //%s - ides reiksme nurodyta String name
             }
@@ -43,14 +43,17 @@ public class Locators {
             public static By imageBroken = By.xpath("//div[@class='col-12 mt-4 col-md-6']//img[2]");
             public static By imageGroup = By.xpath("//div[@class='col-12 mt-4 col-md-6']//img");
         }
+
+        public static class DynamicProperties {
+            public static By buttonEnableAfter = By.xpath("//button[@id='enableAfter']");
+            public static By buttonColorChange = By.xpath("//button[@id='colorChange']");
+        }
     }
 
     public class SeleniumEasy {
 
 
         public class BasicFirstForm {
-
-
             public static By inputUserMessage = By.xpath("//input[@id='user-message']");
             public static By buttonShowMessage = By.xpath("//button[contains(@onclick,'show')]");
             public static By spanDisplay = By.xpath("//*[@id='display']");
