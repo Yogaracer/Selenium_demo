@@ -116,6 +116,12 @@ public class Locators {
             public static By linkGroup = By.xpath("//section[@id='categoryProducts']//a");
         }
     }
+
+    public class TV3 {
+        public class TV3home {
+            public static By buttonCookiesAcceptance = By.xpath("//div[@id='qc-cmp2-ui']//button[@mode='primary']");
+        }
+    }
 }
 
 
