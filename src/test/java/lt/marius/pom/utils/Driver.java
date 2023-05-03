@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.time.Duration;
-
 public class Driver {
 
 //    private static WebDriver driver;
@@ -26,7 +24,7 @@ public class Driver {
 //        driver = new ChromeDriver(options);
         drivers.set(new ChromeDriver(options));
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
-        drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+//        drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8)); - laukia kol visi elementai uzsikraus
     }
 
     public static WebDriver getDriver() {

@@ -3,6 +3,7 @@ package lt.marius.pom.pages;
 import lt.marius.pom.utils.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,6 +17,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Common {
 
@@ -213,6 +215,11 @@ public class Common {
         wait.until(ExpectedConditions.attributeContains(locator, attributeName, attributeValue));
     }
 
+    public static void waitForElementToBeVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     public static boolean waitForElementToBeClickableCustomised(By locator) {
 
         int waitingSeconds = 5; // ciklas kuris tikrina ar elementas yra isEnabled kas 0.5 sekundes naudojant wait statusa
@@ -227,6 +234,20 @@ public class Common {
     }
 
 
+    public static boolean waitForElementToBeVisibleCustomised(By locator) { //naudojamas su reklaminiais skydeliais kai
+        // jie pasirodo arba nepasirodo
+        int waitingSeconds = 7;
+
+        for (int i = 0; i < (waitingSeconds * 2); i++) {
+            try {
+                getElement(locator);
+                return true;
+            } catch (NoSuchElementException e) {
+                sleep(500);
+            }
+        }
+        return false;
+    }
 }
 
 

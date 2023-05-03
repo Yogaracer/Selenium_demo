@@ -14,17 +14,21 @@ public class DynamicPropertiesTest extends TestBase {
     }
 
     @Test
-    public void testButtonEnableAfter(){
+    public void testButtonEnableAfter() {
         DynamicPropertiesPage.clickOnButtonEnableAfter(); //enableAfter mygtuko pavadinimas Inspection skilty
     }
 
     @Test
 
-    public void testButtonColorChange(){
+    public void testButtonColorChange() {
         String attributeName = "class";
         String attributeValue = "text-danger";
         DynamicPropertiesPage.clickOnButtonColorChange(attributeName, attributeValue);
+    }
 
+    @Test
+    public void testButtonVisibleAfter() {
+        DynamicPropertiesPage.clickOnButtonVisibleAfter();
 
     }
 }

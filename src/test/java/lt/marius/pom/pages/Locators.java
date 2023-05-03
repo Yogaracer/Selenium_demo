@@ -7,7 +7,6 @@ public class Locators {
     public static class Demoqa {
 
 
-
         public class TextBox {
 
             public static By inputUserName = By.xpath("//input[@id='userName']");
@@ -30,6 +29,7 @@ public class Locators {
                 // Galimas variantas: public static By labelTreeNodeHome = By.xpath("//label[@for='tree-node-home']");}
 
             }
+
             public static By getGroupOfCheckBoxes(String name) {
                 return By.xpath("//label[@for='tree-node-%s']/../..//input".formatted(name)); //%s - ides reiksme nurodyta String name
             }
@@ -47,6 +47,7 @@ public class Locators {
         public static class DynamicProperties {
             public static By buttonEnableAfter = By.xpath("//button[@id='enableAfter']");
             public static By buttonColorChange = By.xpath("//button[@id='colorChange']");
+            public static By buttonVisibleAfter = By.xpath("//button[@id='visibleAfter']");
         }
     }
 

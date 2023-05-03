@@ -34,7 +34,15 @@ public class DynamicPropertiesPage {
                 Locators.Demoqa.DynamicProperties.buttonColorChange
         );
 
-
         Common.clickOnElement(Locators.Demoqa.DynamicProperties.buttonColorChange);
+    }
+
+    public static void clickOnButtonVisibleAfter() {
+//        Common.waitForElementToBeVisible(Locators.Demoqa.DynamicProperties.buttonVisibleAfter);
+
+        if (Common.waitForElementToBeVisibleCustomised(Locators.Demoqa.DynamicProperties.buttonVisibleAfter)) { //jei
+            // atsiranda cookie skydelis ar reklaminis skydelis, mes paklikinam, prie6ingu atveju neklikina
+        }
+        Common.clickOnElement(Locators.Demoqa.DynamicProperties.buttonVisibleAfter);
     }
 }
