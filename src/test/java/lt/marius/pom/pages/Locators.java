@@ -27,7 +27,6 @@ public class Locators {
                         "//label[@for='tree-node-%s']".formatted(name)
                 );
                 // Galimas variantas: public static By labelTreeNodeHome = By.xpath("//label[@for='tree-node-home']");}
-
             }
 
             public static By getGroupOfCheckBoxes(String name) {
@@ -56,6 +55,13 @@ public class Locators {
             public static By buttonCloseSmallModal = By.xpath("//button[@id='closeSmallModal']");
             public static By buttonShowLargeModal = By.xpath("//button[@id='showLargeModal']");
             public static By buttonCloseLargeModal = By.xpath("//button[@id='closeLargeModal']");
+        }
+
+        public static class BrowserWindows {
+
+            public static By buttonNewTab = By.xpath("//button[@id='tabButton']");
+            public static By buttonNewWindow = By.xpath("//button[@id='windowButton']");
+            public static By headerSampleHeading = By.xpath("//h1[@id='sampleHeading']");
         }
     }
 

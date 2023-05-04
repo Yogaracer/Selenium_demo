@@ -17,6 +17,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class Common {
@@ -247,6 +248,29 @@ public class Common {
             }
         }
         return false;
+    }
+
+    public static String getWindowHandleName() {
+        return Driver.getDriver().getWindowHandle();
+    }
+
+    public static String getWindowHandleNames(String windowHandleName) {
+        Set<String> allWindowHandles = Driver.getDriver().getWindowHandles(); // grazina set tipo stringus , set
+        // neleidzia pavadinimams dubliuotis
+        for (String childWindowName : allWindowHandles) { // lyginame main ir child langu pavadinimus
+            if (!childWindowName.equals(windowHandleName)) { // jei langu pavadinimai nesutaps, grazinti childWindowName
+                return childWindowName;
+            }
+        }
+        return windowHandleName;
+    }
+
+    public static void switchToWindow(String name) {
+        Driver.getDriver().switchTo().window(name);
+    }
+
+    public static void closeWindow() {
+        Driver.getDriver().close();
     }
 }
 
