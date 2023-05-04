@@ -19,7 +19,6 @@ public class DynamicPropertiesTest extends TestBase {
     }
 
     @Test
-
     public void testButtonColorChange() {
         String attributeName = "class";
         String attributeValue = "text-danger";

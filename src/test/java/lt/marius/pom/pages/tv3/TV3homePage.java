@@ -11,8 +11,8 @@ public class TV3homePage {
 
     public static void clickOnButtonCookiesAcceptance() {
 
-        if (Common.waitForElementToBeVisibleCustomised(Locators.TV3.TV3home.buttonCookiesAcceptance)) {
+        if (Common.waitForElementToBeVisibleCustomised(Locators.TV3.TV3home.buttonCookiesSutinku)) {
         }
-        Common.clickOnElement(Locators.TV3.TV3home.buttonCookiesAcceptance);
+        Common.clickOnElement(Locators.TV3.TV3home.buttonCookiesSutinku);
     }
 }

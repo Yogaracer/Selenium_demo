@@ -38,10 +38,10 @@ public class DynamicPropertiesPage {
     }
 
     public static void clickOnButtonVisibleAfter() {
-//        Common.waitForElementToBeVisible(Locators.Demoqa.DynamicProperties.buttonVisibleAfter);
+//        Common.waitForElementToBeVisible(Locators.Demoqa.DynamicProperties.buttonVisibleAfter); // naudojant selenium metodo sprendini
 
         if (Common.waitForElementToBeVisibleCustomised(Locators.Demoqa.DynamicProperties.buttonVisibleAfter)) { //jei
-            // atsiranda cookie skydelis ar reklaminis skydelis, mes paklikinam, prie6ingu atveju neklikina
+            // atsiranda cookie skydelis ar reklaminis skydelis, mes paklikinam.
         }
         Common.clickOnElement(Locators.Demoqa.DynamicProperties.buttonVisibleAfter);
     }
