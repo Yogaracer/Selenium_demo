@@ -49,6 +49,14 @@ public class Locators {
             public static By buttonColorChange = By.xpath("//button[@id='colorChange']");
             public static By buttonVisibleAfter = By.xpath("//button[@id='visibleAfter']");
         }
+
+        public class ModalDialogs {
+
+            public static By buttonShowSmallModal = By.xpath("//button[@id='showSmallModal']");
+            public static By buttonCloseSmallModal = By.xpath("//button[@id='closeSmallModal']");
+            public static By buttonShowLargeModal = By.xpath("//button[@id='showLargeModal']");
+            public static By buttonCloseLargeModal = By.xpath("//button[@id='closeLargeModal']");
+        }
     }
 
     public class SeleniumEasy {
@@ -107,6 +115,12 @@ public class Locators {
                 return By.xpath("//input[@name='gender' and @value='" + inputSex + "']");
             }
         }
+
+        public class BootstrapAlertMessage {
+
+            public static By buttonAutocloseableSuccess = By.xpath("//button[@id='autoclosable-btn-success']");
+            public static By divAlertAutocloseableSuccess = By.xpath("//div[contains(text(),'an autocloseable success')]");
+        }
     }
 
 
@@ -119,7 +133,7 @@ public class Locators {
 
     public class TV3 {
         public class TV3home {
-            public static By buttonCookiesAcceptance = By.xpath("//div[@id='qc-cmp2-ui']//button[@mode='primary']");
+            public static By buttonCookiesSutinku = By.xpath("//div[@id='qc-cmp2-ui']//button[@mode='primary']");
         }
     }
 }
