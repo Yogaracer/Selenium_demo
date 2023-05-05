@@ -272,6 +272,10 @@ public class Common {
     public static void closeWindow() {
         Driver.getDriver().close();
     }
+
+    public static void maximizeWindow() {
+        Driver.getDriver().manage().window().maximize();
+    }
 }
 
 

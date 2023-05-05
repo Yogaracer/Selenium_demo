@@ -124,8 +124,20 @@ public class Locators {
 
         public class BootstrapAlertMessage {
 
-            public static By buttonAutocloseableSuccess = By.xpath("//button[@id='autoclosable-btn-success']");
-            public static By divAlertAutocloseableSuccess = By.xpath("//div[contains(text(),'an autocloseable success')]");
+            public static By buttonAutocloseableSuccess = By.xpath(
+                    "//button[@id='autoclosable-btn-success']");
+            public static By divAlertAutocloseableSuccess = By.xpath(
+                    "//div[contains(text(),'an autocloseable success')]");
+        }
+
+        public class WindowPopupModal {
+
+            public static By buttonFollowOnTwitter = By.xpath("//a[contains(text(),'Follow On Twitter')]");
+            public static By buttonNoThanks = By.xpath("//span[contains(text(),'No, thanks')]");
+            public static By buttonCloseLogin = By.xpath("//div[@data-testid='app-bar-close']");
+            public static By buttonCloseNotification = By.xpath("//div[@data-testid='app-bar-close']");
+            public static By headerSeleniumEasy = By.xpath(
+                    "(//h2[@role='heading']// span[contains(text(), 'Selenium Easy')])");
         }
     }
 
