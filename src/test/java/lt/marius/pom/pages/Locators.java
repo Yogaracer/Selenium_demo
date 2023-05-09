@@ -63,6 +63,13 @@ public class Locators {
             public static By buttonNewWindow = By.xpath("//button[@id='windowButton']");
             public static By headerSampleHeading = By.xpath("//h1[@id='sampleHeading']");
         }
+
+        public class Alerts {
+
+            public static By buttonAlert = By.xpath("//button[@id='alertButton']");
+            public static By timerAlertButton = By.xpath("//button[@id='timerAlertButton']");
+        }
+
     }
 
     public class SeleniumEasy {
@@ -138,6 +145,15 @@ public class Locators {
             public static By buttonCloseNotification = By.xpath("//div[@data-testid='app-bar-close']");
             public static By headerSeleniumEasy = By.xpath(
                     "(//h2[@role='heading']// span[contains(text(), 'Selenium Easy')])");
+        }
+
+        public class JavascriptAlertBox {
+
+            public static By buttonToDisplayAlertBox = By.xpath("//button[@onclick='myAlertFunction()']");
+            public static By buttonToConfirmAlertBox = By.xpath("//button[@onclick='myConfirmFunction()']");
+            public static By paragraphAlertConfirmBox = By.xpath("//p[@id='confirm-demo']");
+            public static By buttonForPromptBox = By.xpath("//button[@onclick='myPromptFunction()']");
+            public static By paragraphAlertPromptBox = By.xpath("//p[@id='prompt-demo']");
         }
     }
 

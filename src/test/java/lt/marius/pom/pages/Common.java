@@ -1,10 +1,7 @@
 package lt.marius.pom.pages;
 
 import lt.marius.pom.utils.Driver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,6 +24,7 @@ public class Common {
     public static List<String> validLinks = new ArrayList<>();
 
     public static List<String> brokenImages = new ArrayList<>(); // static reiskia pasieksime is bet kurios vietos
+
 
     public static void setUpDriver() {
         Driver.setDriver();
@@ -276,6 +274,37 @@ public class Common {
     public static void maximizeWindow() {
         Driver.getDriver().manage().window().maximize();
     }
+
+    public static void acceptAlert() {
+        Driver.getDriver().switchTo().alert().accept();
+    }
+
+    public static void dismissAlert() {
+        Driver.getDriver().switchTo().alert().dismiss();
+    }
+
+    public static String getTextFromAlertBox() {
+        return Driver.getDriver().switchTo().alert().getText();
+    }
+
+    public static boolean waitForAlertToBeVisible() {
+        int waitingSeconds = 7;
+
+        for (int i = 0; i < (waitingSeconds * 2); i++) {
+            try {
+                Driver.getDriver().switchTo().alert();
+                return true;
+            } catch (NoAlertPresentException e) {
+                sleep(500);
+            }
+        }
+        return false;
+    }
+
+    public static void sendKeysToAlertBox(String message) {
+        Driver.getDriver().switchTo().alert().sendKeys(message);
+    }
 }
+
 
 
