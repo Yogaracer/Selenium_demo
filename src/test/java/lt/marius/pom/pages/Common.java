@@ -2,6 +2,7 @@ package lt.marius.pom.pages;
 
 import lt.marius.pom.utils.Driver;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -303,6 +304,32 @@ public class Common {
 
     public static void sendKeysToAlertBox(String message) {
         Driver.getDriver().switchTo().alert().sendKeys(message);
+    }
+
+    public static void clickOnElementByAction(By locator) {
+
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(getElement(locator)).
+                click().
+                build().
+                perform();
+    }
+
+    public static void clickDoubleOnElementWithAction(By locator) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(getElement(locator)).
+                doubleClick().
+                build().
+                perform();
+    }
+
+    public static void clickRightOnElementWithAction(By locator) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(getElement(locator)).
+                contextClick().
+                build().
+                perform();
+
     }
 }
 

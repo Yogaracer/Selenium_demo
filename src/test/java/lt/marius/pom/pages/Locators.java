@@ -6,6 +6,14 @@ public class Locators {
 
     public static class Demoqa {
 
+        public class Home {
+            public static By menuItemElements = By.xpath(" //div[@class='card mt-4 top-card'][1]");
+        }
+
+        public class Elements {
+            public static By menuItemButtons = By.xpath("//div[@class='element-group'][1] // li[@id='item-4']");
+        }
+
 
         public class TextBox {
 
@@ -69,6 +77,16 @@ public class Locators {
             public static By buttonAlert = By.xpath("//button[@id='alertButton']");
             public static By timerAlertButton = By.xpath("//button[@id='timerAlertButton']");
         }
+
+        public class Buttons {
+
+
+            public static By buttonDoubleClick = By.xpath("//button[@id='doubleClickBtn']");
+            public static By paragraphDoubleClick = By.xpath("//p[@id='doubleClickMessage']");
+            public static By buttonRightClick = By.xpath("//button[@id='rightClickBtn']");
+            public static By paragraphRightClick = By.xpath("//p[@id='rightClickMessage']");
+        }
+
 
     }
 
