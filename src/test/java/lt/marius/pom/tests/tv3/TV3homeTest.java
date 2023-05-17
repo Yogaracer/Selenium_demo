@@ -20,6 +20,4 @@ public class TV3homeTest extends TestBase {
         Common.sleep(5000);
 
     }
-
-
 }

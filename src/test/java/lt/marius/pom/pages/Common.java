@@ -31,6 +31,10 @@ public class Common {
         Driver.setDriver();
     }
 
+    public static void setUpEdgeDriver() {
+        Driver.setDriverWithEdge();
+    }
+
     public static void openUrl(String url) {
         Driver.getDriver().get(url);
     }
@@ -350,6 +354,28 @@ public class Common {
             }
         }
         actions.build().perform();
+    }
+
+    public static void executeCtrlADeleteSendKeysWithActions(By locator, String message) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.
+                click(getElement(locator))
+                .keyDown(Keys.CONTROL)
+                .sendKeys("a")
+                .keyUp(Keys.CONTROL)
+                .sendKeys(Keys.DELETE)
+                .sendKeys(message)
+                .sendKeys(Keys.ENTER)
+                .build()
+                .perform();
+    }
+
+    public static void setAttributeValueWithJavascriptExecutor(By locator, String attributeName, String value) {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver.getDriver();
+        javascriptExecutor.executeScript(
+                "arguments[0].%s='%s';".formatted(attributeName, value), // %s - kintamasis
+                getElement(locator)
+        );
     }
 }
 
