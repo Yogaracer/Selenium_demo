@@ -389,7 +389,7 @@ public class Common {
 
         List<String> listOfElementsText = new ArrayList<>();
 
-        for (WebElement element : getElements(locator)){
+        for (WebElement element : getElements(locator)) {
             listOfElementsText.add(element.getText());
 //            listOfElementsText.add(element.getAttribute("value"));
         }
