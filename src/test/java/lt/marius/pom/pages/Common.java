@@ -272,6 +272,13 @@ public class Common {
         Driver.getDriver().switchTo().window(name);
     }
 
+    public static void switchToFrame(By locator) {
+        Driver.getDriver().switchTo().frame(
+                getElement(locator)
+        );
+
+    }
+
     public static void closeWindow() {
         Driver.getDriver().close();
     }
@@ -377,6 +384,19 @@ public class Common {
                 getElement(locator)
         );
     }
+
+    public static List<String> getTextFromElements(By locator) {
+
+        List<String> listOfElementsText = new ArrayList<>();
+
+        for (WebElement element : getElements(locator)){
+            listOfElementsText.add(element.getText());
+//            listOfElementsText.add(element.getAttribute("value"));
+        }
+        return listOfElementsText;
+    }
+
+
 }
 
 

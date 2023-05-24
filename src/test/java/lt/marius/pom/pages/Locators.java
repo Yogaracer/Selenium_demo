@@ -88,6 +88,15 @@ public class Locators {
         }
 
 
+        public static class DatePicker {
+
+            public static By inputDatePicker = By.xpath("//input[@id='datePickerMonthYearInput']");
+        }
+
+        public class Frames {
+            public static By iFrameSingle = By.xpath("//iframe[@id='frame1']");
+            public static By headerFirstMessage = By.xpath("//h1[@id='sampleHeading']");
+        }
     }
 
     public class SeleniumEasy {
