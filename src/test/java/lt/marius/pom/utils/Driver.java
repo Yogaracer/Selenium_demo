@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.*;
 
 import java.time.Duration;
 
@@ -43,6 +44,19 @@ public class Driver {
 //        options.addArguments("--disable-notifications");
 
         drivers.set(new EdgeDriver(options));
+        drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+    }
+
+    public static void setDriverWithFirefox() {
+        WebDriverManager.firefoxdriver().setup();
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
+
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("start-maximized");
+        options.addArguments("--force-device-scale-factor=0.7");
+//        options.addArguments("--disable-notifications");
+
+        drivers.set(new FirefoxDriver(options));
         drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
     }
 
